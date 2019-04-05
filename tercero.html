@@ -1,0 +1,62 @@
+    
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        *{ margin:0; padding:0;}
+        body {height:100%; width:100%; overflow:hidden;}
+        #menu { top: 1rem; right: 1rem; position: fixed; z-index:9999; }
+    </style>
+    <title>p5.js</title>
+</head>
+<body>
+
+    <select id="menu" onchange="location=this.value;">
+        <option value="index.html">Primero</option>
+        <option value="segundo.html">Segundo</option>
+        <option value="tercero.html" selected>Tercero</option>
+        <option value="cuarto.html">Cuarto</option>
+    </select>
+
+    <div id="aqui"></div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>  
+    <script>
+ 
+        var input, boton;
+        function setup() {
+            createCanvas(windowWidth,windowHeight).parent("aqui");
+            background(255, 178, 219);
+            input = createInput()
+            .position(16, 16)
+            .style('padding','9px')
+            .attribute('type','number');
+            
+            boton = createButton('INGRESAR')
+            .position(input.x + input.width + 18, 16)
+            .style("padding:10px; background:#ffffff; font-weight:bold;")
+            .mousePressed(dibuja);
+        }
+        
+        function dibuja() {
+          
+            fill(255,100);
+            var tamano = Number(input.value());
+            alert("Ingresaste el valor " + tamano);
+            for (var x = 20; x < windowWidth; x = x + 100){
+                for (var y =20; y < windowHeight; y = y + 100){
+               rect(x, y, tamano, tamano,5);
+                }
+                }
+               
+        }
+        function windowResized(){
+            resizeCanvas(windowWidth, windowHeight);
+        } 
+        
+    </script>
+</body>
+</html>
