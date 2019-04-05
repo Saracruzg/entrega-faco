@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+        *{ margin:0; padding:0;}
+        body {height:100%; width:100%; overflow:hidden;}
+        #menu { top: 1rem; right: 1rem; position: fixed; z-index:9999; }
+    </style>
+    <title>p5.js</title>
+</head>
+<body>
+    <!-- este será el munú -->
+    <select id="menu" onchange="location=this.value;">
+        <option value="index.html">Primero</option>
+        <option value="segundo.html">Segundo</option>
+        <option value="tercero.html">Tercero</option>
+        <option value="cuarto.html" selected>Cuarto</option>
+    </select>
+    <!-- este div recibirá al canvas-->
+    <div id="aqui"></div>
+    <!-- vamos a buscar la biblioteca -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/p5.min.js"></script>   
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.7.3/addons/p5.dom.min.js"></script>
+    <script>
+        //Ahora podemos usar la biblioteca que fuimos a buscar
+        //Dibujo resultado de consulta a JSON
+function pokeSubmit(){
+    var param = document.getElementById("pokeInput").value;
+    var pokeURL = "http://pokeapi.co/api/v1/pokemon/" + param;
+
+    $.getJSON(pokeURL, function(data){
+        console.log(data);
+        console.log(JSON.stringify(data, null, "https://api.myjson.com/bins/87agg"));
+
+
+        var pokeID = data.national_id;
+        var pokeName = data.name;
+        var pokeType1 = data.types[0].name;
+        if (data.types.length == 2) {
+            var pokeType2 = data.types[1].name;
+        }
+        else var pokeType2 = null;
+
+        console.log("Number: ", pokeID);
+        console.log("Name: ", pokeName);
+        console.log("Type 1: ", pokeType1);
+        console.log("Type 2: ", pokeType2);
+///Number: 25
+//Name: Pikachu
+//Type 1: electric
+//Type 2: null
+
+
+   
+function setup() {
+     createCanvas(windowWidth,windowHeight).parent("aqui");           
+            background(51);
+            input = createInput().position(16, 16).style('padding','9px').attribute('type','number');
+            boton = createButton('INGRESAR').position(input.x + input.width + 18, 16).style("padding:10px; background:#222222; color:#fff; font-weight:bold;").mousePressed(dibuja);
+    print(console.log);
+    noLoop();
+}
+function draw() {
+  background(220);
+    var pokeID= Math.round(pokeID.main.temp);
+}
+    </script>
+</body>
+</html>
